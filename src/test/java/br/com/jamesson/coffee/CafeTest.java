@@ -1,11 +1,15 @@
 package br.com.jamesson.coffee;
 
+import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import static br.com.jamesson.coffee.CoffeeType.*;
 import static junit.framework.TestCase.assertEquals;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.junit.Assert.assertThat;
 
 public class CafeTest {
 
@@ -33,9 +37,10 @@ public class CafeTest {
         Coffee coffee = cafe.brew(Espresso);
 
         // then
+        assertThat(coffee, hasProperty("beans"));
         Assert.assertEquals("Wrong coffee type", Espresso, coffee.getType());
         Assert.assertEquals("Wrong amount of milk", NO_MILK, coffee.getMilk());
-        Assert.assertEquals("Wrong number of beans", ESPRESSO_BEANS, coffee.getBeans());
+        assertThat(coffee, hasProperty("beans", equalTo(ESPRESSO_BEANS)));
     }
 
     @Test
