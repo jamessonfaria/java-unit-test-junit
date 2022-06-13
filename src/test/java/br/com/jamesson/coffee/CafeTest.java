@@ -1,6 +1,7 @@
 package br.com.jamesson.coffee;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import static br.com.jamesson.coffee.CoffeeType.*;
@@ -12,16 +13,21 @@ public class CafeTest {
     public static final int NO_MILK = 0;
     public static final int NO_BEANS = 0;
 
-    private Cafe cafeWithBeans() {
-        Cafe cafe = new Cafe();
+    private Cafe cafe;
+
+    @Before
+    public void before(){
+        this.cafe = new Cafe();
+    }
+
+    private void withBeans() {
         cafe.restockBeans(ESPRESSO_BEANS);
-        return cafe;
     }
 
     @Test
     public void canBrewEspresso(){
         // given
-        Cafe cafe = cafeWithBeans();
+        withBeans();
 
         // when
         Coffee coffee = cafe.brew(Espresso);
@@ -35,7 +41,7 @@ public class CafeTest {
     @Test
     public void brewingEspressoConsumesBeans(){
         // given
-        Cafe cafe = cafeWithBeans();
+        withBeans();
 
         // when
         Coffee coffee = cafe.brew(Espresso);
@@ -66,7 +72,7 @@ public class CafeTest {
     @Test(expected = IllegalStateException.class)
     public void lattesRequiresMilk(){
         // given
-        Cafe cafe = cafeWithBeans();
+        withBeans();
 
         // when
         cafe.brew(Latte);
@@ -75,7 +81,7 @@ public class CafeTest {
     @Test
     public void canBrewLatte(){
         // given
-        Cafe cafe = cafeWithBeans();
+        withBeans();
         cafe.restockMilk(Latte.getRequiredMilk());
 
         // when
