@@ -26,11 +26,6 @@ public class CsvSalesRepository implements SalesRepository {
 		return Integer.parseInt(value.trim());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.monotonic.testing.m5.SalesRepository#loadSales()
-	 */
 	@Override
 	public List<Sale> loadSales() {
 		if (sales == null) {
