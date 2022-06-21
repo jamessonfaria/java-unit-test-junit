@@ -52,6 +52,7 @@
                         --add-opens java.base/java.text=ALL-UNNAMED
                         --add-opens java.desktop/java.awt.font=ALL-UNNAMED
                         --add-opens java.base/java.lang=ALL-UNNAMED
+                        --add-opens=java.base/java.io=ALL-UNNAMED
                         -Dillegal-access=permit</argLine>
                 </configuration>
             </plugin>
